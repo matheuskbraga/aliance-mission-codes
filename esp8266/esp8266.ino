@@ -49,6 +49,10 @@ void loop() {
     Serial.print('E');
   } else if (req.indexOf("/garra-comprimida")!= -1) {
     Serial.print('C');
+  } else if (req.indexOf("/garra-open")!= -1) {
+    Serial.print('H');
+  } else if (req.indexOf("/garra-close")!= -1) {
+    Serial.print('G');
   }
   // Resposta HTTP para o navegador
   client.println("HTTP/1.1 200 OK");
@@ -72,6 +76,9 @@ void loop() {
   client.println("<p></p>");
   client.println("<p><a href='/garra-esticada'><button class='btn'>Esticar</button></a></p>");
   client.println("<p><a href='/garra-comprimida'><button class='btn'>Comprimir</button></a></p>");
+  client.println("<p></p>");
+  client.println("<p><a href='/garra-open'><button class='btn'>Abrir</button></a></p>");
+  client.println("<p><a href='/garra-close'><button class='btn'>Fechar</button></a></p>");
   client.println("</body></html>");
 
   delay(1);
