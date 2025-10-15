@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
 // Credenciais da rede Wi-Fi que o ESP8266 irá criar
-const char* ssid = "RoboControl";
+const char* ssid = "Robo_Apolo";
 const char* password = "robo12345";
 
 // Cria um servidor na porta 80 (padrão HTTP)
@@ -45,14 +45,17 @@ void loop() {
     Serial.print('R');
   } else if (req.indexOf("/stop")!= -1) {
     Serial.print('S');
+  } else if (req.indexOf("/garra-esticada")!= -1) {
+    Serial.print('E');
+  } else if (req.indexOf("/garra-comprimida")!= -1) {
+    Serial.print('C');
   }
-
   // Resposta HTTP para o navegador
   client.println("HTTP/1.1 200 OK");
   client.println("Content-Type: text/html");
   client.println(""); // Linha em branco obrigatória
 
-  // A página web com os botões de controlo
+  // A página web com os botões de controle
   client.println("<!DOCTYPE HTML>");
   client.println("<html>");
   client.println("<head><title>Controle do Robo</title>");
@@ -65,7 +68,10 @@ void loop() {
   client.println("<p><a href='/left'><button class='btn'>Esquerda</button></a>");
   client.println("<a href='/stop'><button class='btn'>Parar</button></a>");
   client.println("<a href='/right'><button class='btn'>Direita</button></a></p>");
-  client.println("<p><a href='/backward'><button class='btn'>Trás</button></a></p>");
+  client.println("<p><a href='/backward'><button class='btn'>Tras</button></a></p>");
+  client.println("<p></p>");
+  client.println("<p><a href='/garra-esticada'><button class='btn'>Esticar</button></a></p>");
+  client.println("<p><a href='/garra-comprimida'><button class='btn'>Comprimir</button></a></p>");
   client.println("</body></html>");
 
   delay(1);
